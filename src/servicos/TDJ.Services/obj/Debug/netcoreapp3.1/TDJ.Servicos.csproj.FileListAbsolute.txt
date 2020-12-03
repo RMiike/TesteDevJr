@@ -1,9 +1,0 @@
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\bin\Debug\netcoreapp3.1\TDJ.Servicos.deps.json
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\bin\Debug\netcoreapp3.1\TDJ.Servicos.dll
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\bin\Debug\netcoreapp3.1\TDJ.Servicos.pdb
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.csprojAssemblyReference.cache
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.AssemblyInfoInputs.cache
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.AssemblyInfo.cs
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.csproj.CoreCompileInputs.cache
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.dll
-C:\Users\miike\source\repos\TesteDevJr\src\servicos\TDJ.Services\obj\Debug\netcoreapp3.1\TDJ.Servicos.pdb
