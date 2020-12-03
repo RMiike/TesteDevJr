@@ -31,6 +31,7 @@ namespace TDJ.MVC
 
             services.AddScoped<TDJDbContext>();
             services.AddScoped<IRepositorioDeProduto, RepositorioDeProduto>();
+            services.AddScoped<IRepositorioDeCliente, RepositorioDeCliente>();
 
             services.AddHttpClient<IServicosDeProduto, ServicosDeProduto>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

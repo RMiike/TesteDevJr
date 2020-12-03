@@ -21,6 +21,7 @@ namespace TDJ.Servicos.Servicos
 
         public async Task<ProdutoViewModel> ObterPorId(Guid id)
         {
+            //TODO
             var resposta = await _httpClient.GetAsync($"/v1/produto-api/{id}");
 
             var options = new JsonSerializerOptions

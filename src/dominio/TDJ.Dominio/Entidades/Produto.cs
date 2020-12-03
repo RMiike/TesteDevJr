@@ -7,10 +7,10 @@ namespace TDJ.Dominio.Entidades
     public class Produto : Base, IAggregateRoot
     {
         protected Produto() { }
-        public Produto(string nome, bool ativo)
+        public Produto( string nome)
         {
+            Id = Guid.NewGuid();
             Nome = nome;
-            Ativo = ativo;
         }
 
         public string Nome { get; set; }

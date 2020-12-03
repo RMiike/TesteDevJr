@@ -12,4 +12,5 @@ namespace TDJ.Data.Interfaces
         void Adicionar(Produto produto);
         void Atualizar(Produto produto);
     }
+
 }

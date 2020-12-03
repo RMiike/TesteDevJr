@@ -34,23 +34,31 @@ namespace TDJ.MVC.Controllers.API.v1
         }
 
         [HttpPost]
-        public void Criar(ProdutoViewModel produtoViewModel)
+        public void Criar([FromBody] ProdutoViewModel produtoViewModel)
         {
-            throw new NotImplementedException();
+            var produto = new Produto( produtoViewModel.Nome);
+            _repositorioDeProduto.Adicionar(produto);
         }
 
 
         [HttpPut("{id}")]
-        public void Atualizar(Guid id)
+        public async Task<Produto> Atualizar( Guid id, [FromBody] ProdutoViewModel produtoViewModel)
         {
-            throw new NotImplementedException();
+           var produto = await _repositorioDeProduto.ObterPorId(id);
+            produto.Nome = produtoViewModel.Nome;
+            _repositorioDeProduto.Atualizar(produto);
+            return produto;
 
         }
 
         [HttpDelete("{id}")]
-        public void Deletar(Guid id)
+        public async Task<Produto> Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            var produto = await _repositorioDeProduto.ObterPorId(id);
+            produto.Ativo = false;
+            _repositorioDeProduto.Atualizar(produto);
+            return produto;
+
 
         }
 

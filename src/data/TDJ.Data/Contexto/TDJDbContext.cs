@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
 using TDJ.Dominio.Entidades;
 using TDJ.Dominio.Interfaces;
 
@@ -24,9 +23,9 @@ namespace TDJ.Repositorio.Contexto
 
             model.ApplyConfigurationsFromAssembly(typeof(TDJDbContext).Assembly);
         }
-        public async Task<bool> Commit()
+        public bool Commit()
         {
-            return await base.SaveChangesAsync() > 0;
+            return base.SaveChanges() > 0;
         }
     }
 }

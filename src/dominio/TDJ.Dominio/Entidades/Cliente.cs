@@ -1,9 +1,10 @@
 ﻿using System;
 using TDJ.Dominio.EntidadeBase;
+using TDJ.Dominio.Interfaces;
 
 namespace TDJ.Dominio.Entidades
 {
-    public class Cliente : Base
+    public class Cliente : Base, IAggregateRoot
     {
         protected Cliente() { }
         public Cliente(string nome, string email, string cpf)

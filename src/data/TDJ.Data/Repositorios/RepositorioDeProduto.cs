@@ -35,11 +35,13 @@ namespace TDJ.Data.Repositorios
         public void Adicionar(Produto produto)
         {
             _context.Produtos.Add(produto);
+            _context.Commit();
         }
 
         public void Atualizar(Produto produto)
         {
             _context.Produtos.Update(produto);
+            _context.Commit();
         }
 
         public void Dispose()
