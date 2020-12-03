@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TDJ.Repositorio.Contexto;
 
 namespace TDJ.MVC
 {
@@ -18,6 +20,9 @@ namespace TDJ.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<TDJDbContext>(opt =>
+               opt.UseSqlServer(Configuration.GetConnectionString("TDJConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

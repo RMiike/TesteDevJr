@@ -4,6 +4,7 @@ namespace TDJ.Dominio.Entidades
 {
     public class Produto : Base
     {
+        protected Produto() { }
         public Produto(string nome, bool ativo)
         {
             Nome = nome;
