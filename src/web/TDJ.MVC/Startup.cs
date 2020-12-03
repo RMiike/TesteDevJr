@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TDJ.Data.Interfaces;
+using TDJ.Data.Repositorios;
 using TDJ.Repositorio.Contexto;
+using TDJ.Servicos.Interfaces;
+using TDJ.Servicos.Servicos;
 
 namespace TDJ.MVC
 {
@@ -23,6 +28,22 @@ namespace TDJ.MVC
 
             services.AddDbContext<TDJDbContext>(opt =>
                opt.UseSqlServer(Configuration.GetConnectionString("TDJConnection")));
+
+            services.AddScoped<TDJDbContext>();
+            services.AddScoped<IRepositorioDeProduto, RepositorioDeProduto>();
+
+            services.AddHttpClient<IServicosDeProduto, ServicosDeProduto>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("Total",
+                    builder =>
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,7 +60,7 @@ namespace TDJ.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors("Total");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,0 +1,31 @@
+﻿@model TDJ.Dominio.ViewModel.ProdutoViewModel
+
+
+@{
+  ViewData["Title"] = "Produtos ativos";
+}
+
+
+<section>
+  <div>
+    <div style="background-image: url(); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
+      <div style="text-align: center;">
+        <img src="" />
+      </div>
+    </div>
+    <div class="container" style=" padding-top: 20px">
+      <div class="row">
+        @{
+            <div class="col-md-3">
+              <div href="#" class="card card-product-grid">
+
+                <figcaption class="info-wrap">
+                 
+                    <b> @Model.Nome</b>
+              </div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

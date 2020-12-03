@@ -19,6 +19,7 @@ namespace TDJ.Repositorio.Mapeamentos
             builder.Property(c => c.Ativo)
                    .HasDefaultValue(true);
 
+            builder.Ignore(c => c.IdDoCliente);
         }
     }
 }

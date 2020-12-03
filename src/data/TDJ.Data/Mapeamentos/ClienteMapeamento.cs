@@ -24,6 +24,12 @@ namespace TDJ.Repositorio.Mapeamentos
                    .HasColumnType("varchar(250)")
                    .IsRequired();
 
+            builder.HasOne(c => c.Produto)
+              .WithOne(c => c.Cliente)
+              .HasForeignKey<Cliente>(c=>c.IdDoProduto)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

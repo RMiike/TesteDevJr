@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TDJ.Repositorio.Contexto;
 
 namespace TDJ.Repositorio.Migrations
 {
     [DbContext(typeof(TDJDbContext))]
-    [Migration("20201203020811_Inicial")]
-    partial class Inicial
+    partial class TDJDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,11 +33,17 @@ namespace TDJ.Repositorio.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
+                    b.Property<Guid>("IdDoProduto")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdDoProduto")
+                        .IsUnique();
 
                     b.ToTable("Clientes");
                 });
@@ -62,6 +66,22 @@ namespace TDJ.Repositorio.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Produtos");
+                });
+
+            modelBuilder.Entity("TDJ.Dominio.Entidades.Cliente", b =>
+                {
+                    b.HasOne("TDJ.Dominio.Entidades.Produto", "Produto")
+                        .WithOne("Cliente")
+                        .HasForeignKey("TDJ.Dominio.Entidades.Cliente", "IdDoProduto")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("TDJ.Dominio.Entidades.Produto", b =>
+                {
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }
