@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TDJ.Servicos/1.0.0": {
+        "runtime": {
+          "TDJ.Servicos.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TDJ.Servicos/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
