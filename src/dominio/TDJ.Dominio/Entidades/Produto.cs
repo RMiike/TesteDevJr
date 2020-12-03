@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TDJ.Dominio.EntidadeBase;
 
 namespace TDJ.Dominio.Entidades
 {
-    class Produto
+    public class Produto : Base
     {
+        public Produto(string nome, bool ativo)
+        {
+            Nome = nome;
+            Ativo = ativo;
+        }
+
+        public string Nome { get; set; }
+        public bool Ativo { get; set; }
     }
 }
