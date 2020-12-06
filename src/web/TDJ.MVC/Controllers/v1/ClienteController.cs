@@ -1,35 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 using TDJ.Dominio.ViewModel;
+using TDJ.Servicos.Interfaces;
 
 namespace TDJ.MVC.Controllers.v1
 {
+    [Route("v1/cliente")]
     public class ClienteController : Controller
     {
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index([FromServices] IServicosDeCliente _servicosDeCliente)
         {
-            return View();
+            var clientes = await _servicosDeCliente.ObterTodos();
+            return View(clientes);
         }
-
-        [HttpGet("id")]
-        public IActionResult ClienteDetalhe(Guid id)
-        {
-            return View();
-        }
-
         [HttpGet]
-        public IActionResult Criar()
+        [Route("{id}")]
+        public async Task<IActionResult> ClienteDetalhe(Guid id,
+                                                        [FromServices] IServicosDeCliente _servicosDeCliente)
         {
-            return View();
+            var cliente = await _servicosDeCliente.ObterPorId(id);
+            return View(cliente);
         }
+
+
         [HttpPost]
         public IActionResult Criar(ClienteViewModel clienteViewModel)
         {
             return View();
         }
-
 
         [HttpPut("id")]
         public IActionResult Atualizar(Guid id)

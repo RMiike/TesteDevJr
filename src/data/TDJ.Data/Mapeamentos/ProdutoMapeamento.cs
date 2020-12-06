@@ -20,6 +20,10 @@ namespace TDJ.Repositorio.Mapeamentos
                    .HasDefaultValue(true);
 
             builder.Ignore(c => c.IdDoCliente);
+
+
+            builder.Ignore(e => e.ValidationResult);
+            builder.Ignore(e => e.ErrorMessages);
         }
     }
 }

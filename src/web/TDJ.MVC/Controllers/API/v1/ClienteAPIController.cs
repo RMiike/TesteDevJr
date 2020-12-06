@@ -1,55 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using TDJ.Data.Interfaces;
-using TDJ.Dominio.Entidades;
 using TDJ.Dominio.ViewModel;
+using TDJ.Servicos.Interfaces;
 
 namespace TDJ.MVC.Controllers.API.v1
 {
     [Route("v1/cliente-api")]
-    public class ClienteAPIController : Controller
+    public class ClienteAPIController : MainController
     {
-        private readonly IRepositorioDeCliente _repositorioDeCliente;
+        private readonly IServicosDeAPIDeCliente _servicosDeAPIDeCliente;
 
-        public ClienteAPIController(IRepositorioDeCliente repositorioDeCliente)
+        public ClienteAPIController(IServicosDeAPIDeCliente servicosDeAPIDeCliente)
         {
-            _repositorioDeCliente = repositorioDeCliente;
+            _servicosDeAPIDeCliente = servicosDeAPIDeCliente;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Cliente>> Index()
+        public async Task<IActionResult> Index()
         {
-            var clientes = await _repositorioDeCliente.ObterTodos();
-            return clientes;
+            var clientes = await _servicosDeAPIDeCliente.ObterTodos();
+            return clientes == null ? NotFound() : RespostaCustomizada(clientes);
         }
 
         [HttpGet("{id}")]
-        public async Task<Cliente> ClienteDetalhe(Guid id)
+        public async Task<IActionResult> ClienteDetalhe(Guid id)
         {
-            var cliente = await _repositorioDeCliente.ObterPorId(id);
-            return cliente;
+            var cliente = await _servicosDeAPIDeCliente.ObterPorId(id);
+            return cliente == null ? NotFound() : RespostaCustomizada(cliente);
         }
 
         [HttpPost]
-        public void Criar(ClienteViewModel clienteViewModel)
+        public async Task<IActionResult> Criar([FromBody] CriarClienteViewModel clienteViewModel)
         {
-            throw new NotImplementedException();
+            var cliente = await _servicosDeAPIDeCliente.Adicionar(clienteViewModel);
+            return cliente == null ? BadRequest() : RespostaCustomizada(cliente);
+
         }
 
 
         [HttpPut("{id}")]
-        public void Atualizar(Guid id)
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] CriarClienteViewModel clienteViewModel)
         {
-            throw new NotImplementedException();
-
+            var cliente = await _servicosDeAPIDeCliente.Atualizar(id, clienteViewModel);
+            return cliente == null ? BadRequest() : RespostaCustomizada(cliente);
         }
 
         [HttpDelete("{id}")]
-        public void Deletar(Guid id)
+        public async Task<IActionResult> Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            var resultado = await _servicosDeAPIDeCliente.Deletar(id);
+            return RespostaCustomizada(resultado);
 
         }
     }

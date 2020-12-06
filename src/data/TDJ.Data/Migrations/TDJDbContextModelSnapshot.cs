@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TDJ.Repositorio.Contexto;
 
-namespace TDJ.Repositorio.Migrations
+namespace TDJ.Data.Migrations
 {
     [DbContext(typeof(TDJDbContext))]
     partial class TDJDbContextModelSnapshot : ModelSnapshot
@@ -27,7 +27,7 @@ namespace TDJ.Repositorio.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("varchar(11)");
 
                     b.Property<string>("Email")
                         .IsRequired()

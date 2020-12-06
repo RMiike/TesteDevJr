@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TDJ.Repositorio.Contexto;
 
-namespace TDJ.Repositorio.Migrations
+namespace TDJ.Data.Migrations
 {
     [DbContext(typeof(TDJDbContext))]
-    [Migration("20201203110907_two")]
-    partial class two
+    [Migration("20201206194642_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace TDJ.Repositorio.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("varchar(11)");
 
                     b.Property<string>("Email")
                         .IsRequired()

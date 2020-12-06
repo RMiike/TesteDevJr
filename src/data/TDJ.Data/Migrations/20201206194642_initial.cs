@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TDJ.Repositorio.Migrations
+namespace TDJ.Data.Migrations
 {
-    public partial class initia : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,7 @@ namespace TDJ.Repositorio.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "varchar(250)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    IdDoCliente = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Ativo = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -28,7 +27,7 @@ namespace TDJ.Repositorio.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "varchar(250)", nullable: false),
                     Email = table.Column<string>(type: "varchar(250)", nullable: false),
-                    CPF = table.Column<string>(type: "varchar(250)", nullable: false),
+                    CPF = table.Column<string>(type: "varchar(11)", nullable: false),
                     IdDoProduto = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>

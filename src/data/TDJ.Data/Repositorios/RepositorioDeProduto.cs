@@ -20,7 +20,7 @@ namespace TDJ.Data.Repositorios
             _context = context;
         }
 
-        public async Task<IEnumerable<Produto>> ObterTodos()
+        public async Task<IList<Produto>> ObterTodos()
         {
             return await _context.Produtos.Where(p => p.Ativo == true)
                                           .AsNoTracking()
@@ -30,12 +30,14 @@ namespace TDJ.Data.Repositorios
         {
             return await _context.Produtos.Where(p => p.Ativo == true && p.Id == id)
                                           .FirstOrDefaultAsync();
-
         }
-        public void Adicionar(Produto produto)
+
+        public async Task<Produto> Adicionar(Produto produto)
         {
-            _context.Produtos.Add(produto);
+            var resultado = await _context.Produtos.AddAsync(produto);
             _context.Commit();
+
+            return resultado.Entity;
         }
 
         public void Atualizar(Produto produto)
@@ -43,7 +45,12 @@ namespace TDJ.Data.Repositorios
             _context.Produtos.Update(produto);
             _context.Commit();
         }
+        public void Deletar(Produto produto)
+        {
+            _context.Produtos.Remove(produto);
+            _context.Commit();
 
+        }
         public void Dispose()
         {
             _context?.Dispose();

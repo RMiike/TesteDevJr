@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDJ.Dominio", "src\dominio\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDJ.Data", "src\data\TDJ.Data\TDJ.Data.csproj", "{CE47A2BB-500B-4F83-988A-ADC1C0C2F04A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testes", "testes", "{CBC9AD5A-E5A3-48D9-9E64-B7970D2D0347}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

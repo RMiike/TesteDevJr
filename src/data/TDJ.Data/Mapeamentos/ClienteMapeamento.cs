@@ -17,7 +17,7 @@ namespace TDJ.Repositorio.Mapeamentos
                    .IsRequired();
 
             builder.Property(c => c.CPF)
-                   .HasColumnType("varchar(250)")
+                   .HasColumnType("varchar(11)")
                    .IsRequired();
 
             builder.Property(c => c.Email)
@@ -29,6 +29,10 @@ namespace TDJ.Repositorio.Mapeamentos
               .HasForeignKey<Cliente>(c=>c.IdDoProduto)
               .IsRequired()
               .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Ignore(e => e.ValidationResult);
+            builder.Ignore(e => e.ErrorMessages);
 
         }
     }

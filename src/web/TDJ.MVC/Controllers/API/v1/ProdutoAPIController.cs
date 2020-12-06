@@ -1,64 +1,58 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using TDJ.Data.Interfaces;
-using TDJ.Dominio.Entidades;
 using TDJ.Dominio.ViewModel;
+using TDJ.Servicos.Interfaces;
 
 namespace TDJ.MVC.Controllers.API.v1
 {
     [Route("v1/produto-api")]
-    public class ProdutoAPIController : Controller
+    public class ProdutoAPIController : MainController
     {
 
-        private readonly IRepositorioDeProduto _repositorioDeProduto;
+        private readonly IServicosDeAPIDeProduto _servicosDeAPIDeProduto;
 
-        public ProdutoAPIController(IRepositorioDeProduto repositorioDeProduto)
+        public ProdutoAPIController(IServicosDeAPIDeProduto servicosDeAPIDeProduto)
         {
-            _repositorioDeProduto = repositorioDeProduto;
+            _servicosDeAPIDeProduto = servicosDeAPIDeProduto;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Produto>> Index()
+        public async Task<IActionResult> Index()
         {
-            var produtos = await _repositorioDeProduto.ObterTodos();
-            return produtos;
+            var resultado = await _servicosDeAPIDeProduto.ObterTodos();
+
+            return RespostaCustomizada(resultado);
+
         }
 
         [HttpGet("{id}")]
-        public async Task<Produto> ProdutoDetalhe(Guid id)
+        public async Task<IActionResult> ProdutoDetalhe(Guid id)
         {
-            var produto = await _repositorioDeProduto.ObterPorId(id);
-            return produto;
+            var resultado = await _servicosDeAPIDeProduto.ObterPorId(id);
+            return RespostaCustomizada(resultado);
         }
 
         [HttpPost]
-        public void Criar([FromBody] ProdutoViewModel produtoViewModel)
+        public async Task<IActionResult> Criar([FromBody] CriarProdutoViewModel produtoViewModel)
         {
-            var produto = new Produto( produtoViewModel.Nome);
-            _repositorioDeProduto.Adicionar(produto);
+            var cliente = await _servicosDeAPIDeProduto.Adicionar(produtoViewModel);
+            return cliente == null ? BadRequest() : RespostaCustomizada(cliente);
         }
 
 
         [HttpPut("{id}")]
-        public async Task<Produto> Atualizar( Guid id, [FromBody] ProdutoViewModel produtoViewModel)
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] CriarProdutoViewModel produtoViewModel)
         {
-           var produto = await _repositorioDeProduto.ObterPorId(id);
-            produto.Nome = produtoViewModel.Nome;
-            _repositorioDeProduto.Atualizar(produto);
-            return produto;
-
+            var cliente = await _servicosDeAPIDeProduto.Atualizar(id, produtoViewModel);
+            return cliente == null ? BadRequest() : RespostaCustomizada(cliente);
         }
 
         [HttpDelete("{id}")]
-        public async Task<Produto> Deletar(Guid id)
+        public async Task<IActionResult> Deletar(Guid id)
         {
-            var produto = await _repositorioDeProduto.ObterPorId(id);
-            produto.Ativo = false;
-            _repositorioDeProduto.Atualizar(produto);
-            return produto;
-
+            var resultado = await _servicosDeAPIDeProduto.Deletar(id);
+            return RespostaCustomizada(resultado);
 
         }
 
