@@ -27,6 +27,6 @@ Ao cadastrar um novo cliente, tornar obrigatório relacioná-lo a um produto.
 
 Regras:
 - Não permitir a inclusão de mais de um cliente com o mesmo CPF ou mesmo e-mail
-- Não permitir relacionar mais de um cliente ao mesmo produto
+- Não permitir relacionar mais de um cliente ao mesmo produto 
 - No cadastro de cliente, não listas produtos inativos para seleção
 - Não permitir a exclusão de um produto que esteja relacionado a um cliente
